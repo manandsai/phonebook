@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace SimplePhoneBook
 {
@@ -21,13 +21,14 @@ namespace SimplePhoneBook
                     case "add":
                         AddPerson();
                         break;
-                 
                        
                    case "list":
                         ListPeople();
                         break;
-                   
-                                        default:
+                   case  "delete" :
+                          DeletePerson();
+                          break;
+                           default:
                       
                  Console.Write("Enter Correct Command  ");
                  break;}
@@ -77,6 +78,17 @@ namespace SimplePhoneBook
             Console.WriteLine("\nPress any key to continue.");
             Console.ReadKey();
         }
+        private static  void DeletePerson(){
+            Person person =new Person();
+       Console.WriteLine("enter  the name:");
+       string name = Console.ReadLine();
+        deletecontact(person);
+        }
+         private static void deletecontact(Person person)
+        {
+           for(int=0;)
+    }
+
   private static void PrintContact(Person person)
         {
             Console.WriteLine("First Name: " + person.FirstName);
