@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+ 
 namespace SimplePhoneBook
 {
     class Program
-    {
-        public static List<Person> People = new List<Person>();
-  static void Main()
+    { 
+        public  static List<Person> People = new List<Person>();
+   static void Main()
         {
+            
             string command = "";
             while (command != "exit")
             {
@@ -28,14 +29,15 @@ namespace SimplePhoneBook
                    case  "delete" :
                           DeletePerson();
                           break;
+                   case "search":
+                            searchperson();
+                            break;
                            default:
                       
                  Console.Write("Enter Correct Command  ");
                  break;}
             }
         }
-
-       
 
         private static void AddPerson()
         {
@@ -51,16 +53,8 @@ namespace SimplePhoneBook
 
             Console.Write("Enter Phone Number: ");
             person.PhoneNumber = Console.ReadLine();
-
-           
-           
             People.Add(person);
         }
-
-   
-
-
-     
         private static void ListPeople()
         {
             Console.Clear();
@@ -79,14 +73,32 @@ namespace SimplePhoneBook
             Console.ReadKey();
         }
         private static  void DeletePerson(){
-            Person person =new Person();
-       Console.WriteLine("enter  the name:");
-       string name = Console.ReadLine();
-        deletecontact(person);
+         List<Person> people = findperson();
+         Console.Clear();
+         Console.WriteLine("enter  the number");
+         for(int i=0;i<people.Count;i++ ){
+          Console.WriteLine(i);
+          PrintContact(people.ElementAt(i));
+          int removenumber = Convert.ToInt32(Console.ReadLine());
+          removeperson(people.ElementAt(removenumber));
+
+         }
         }
-         private static void deletecontact(Person person)
+        private static  void searchperson(Person person){
+            List<Person> people = findperson();
+          PrintContact(person);
+
+        }
+         private static void removeperson(Person person)
         {
-           for(int=0;)
+           People.Remove(person);
+           Console.Clear();
+           Console.WriteLine("Contact deleted");
+
+    }
+    private static List<Person>  findperson(){
+string name = Console.ReadLine();
+   return People.Where(x => x.FirstName.ToLower() == name.ToLower()).ToList();
     }
 
   private static void PrintContact(Person person)
